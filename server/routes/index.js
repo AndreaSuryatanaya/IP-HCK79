@@ -3,7 +3,7 @@ const Controller = require("../controllers/controller");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  res.send("Hello World iProject!");
+  res.send("server is running ...");
 });
 
 router.post("/register", Controller.handleRegister);
