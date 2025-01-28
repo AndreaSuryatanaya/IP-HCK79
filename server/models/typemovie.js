@@ -29,11 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      hooks: {
-        beforeCreate(instance, options) {
-          instance.password = hashPassword(instance.password);
-        },
-      },
       sequelize,
       modelName: "TypeMovies",
     }

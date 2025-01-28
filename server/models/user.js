@@ -21,36 +21,36 @@ module.exports = (sequelize, DataTypes) => {
     {
       username: {
         type: DataTypes.STRING,
-        // allowNull: false, // Validasi notNull
-        // validate: {
-        //   notNull: { msg: "Username is required" },
-        //   notEmpty: { msg: "Username is required" },
-        // },
+        allowNull: false, // Validasi notNull
+        validate: {
+          notNull: { msg: "Username is required" },
+          notEmpty: { msg: "Username is required" },
+        },
       },
       email: {
         type: DataTypes.STRING,
-        // unique: true,
-        // allowNull: false, // Validasi notNull
-        // validate: {
-        //   notNull: { msg: "Email is required" },
-        //   notEmpty: { msg: "Email is required" },
-        //   isEmail: {
-        //     args: true,
-        //     msg: "Must be a valid email format",
-        //   },
-        // },
+        unique: true,
+        allowNull: false, // Validasi notNull
+        validate: {
+          notNull: { msg: "Email is required" },
+          notEmpty: { msg: "Email is required" },
+          isEmail: {
+            args: true,
+            msg: "Must be a valid email format",
+          },
+        },
       },
       password: {
         type: DataTypes.STRING,
-        // allowNull: false, // Validasi notNull
-        // validate: {
-        //   notNull: { msg: "Password is required" },
-        //   notEmpty: { msg: "Password is required" },
-        //   len: {
-        //     args: [5],
-        //     msg: "Password must be at least 5 characters long",
-        //   },
-        // },
+        allowNull: false, // Validasi notNull
+        validate: {
+          notNull: { msg: "Password is required" },
+          notEmpty: { msg: "Password is required" },
+          len: {
+            args: [5],
+            msg: "Password must be at least 5 characters long",
+          },
+        },
       },
       role: {
         type: DataTypes.STRING,
