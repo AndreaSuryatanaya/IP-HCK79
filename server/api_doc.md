@@ -47,15 +47,9 @@ List of available endpoints:
 
 Routes below need authentication:
 
-- `GET /vouchers`
-- `POST /gifts/:voucherId`
-- `GET /gifts`
-
-Routes below need authentication & authorization:
-
-- `PATCH /gifts/:id`
-- `DELETE /gifts/:id`
-- `PATCH /gifts/:id/claim`
+- `GET /`
+- `POST /google-login`
+- `POST /which-is-better`
 
 ## 1. POST /register
 

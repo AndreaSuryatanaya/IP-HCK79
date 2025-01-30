@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./card.css";
+// import "./card.css";
 
 export default function AnimeCard({ anime }) {
   return (
@@ -18,8 +18,9 @@ export default function AnimeCard({ anime }) {
           ⭐ {anime.score} | 🗓 {anime.year || "Unknown"}
         </p>
       </div>
-      <div className="card-footer">
+      <div className="card-footer d-flex justify-content-between align-items-center">
         <small className="text-muted">ID: {anime.mal_id}</small>
+        <button className="btn btn-danger">Add Collection</button>
       </div>
     </div>
   );

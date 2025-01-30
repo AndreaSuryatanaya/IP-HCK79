@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAnime } from "../redux/animeSlice";
 import AnimeCard from "../components/AnimeCard";
 
 export default function Home() {
-  const [animeList, setAnimeList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { animeList, loading } = useSelector((state) => state.anime);
 
   useEffect(() => {
-    const fetchAnime = async () => {
-      try {
-        const response = await axios.get("https://api.jikan.moe/v4/top/anime");
-        setAnimeList(response.data.data);
-      } catch (error) {
-        console.error("Error fetching anime:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAnime();
-  }, []);
+    dispatch(fetchAnime());
+  }, [dispatch]);
 
   return (
     <div className="container my-5">

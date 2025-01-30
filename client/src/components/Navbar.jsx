@@ -13,6 +13,7 @@ export default function Navbar() {
         <Link className="navbar-brand fw-bold" to="/">
           AnimeList
         </Link>
+        {/* ✅ Tombol Hamburger */}
         <button
           className="navbar-toggler"
           type="button"
@@ -24,6 +25,8 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
+        {/* ✅ Menu yang akan muncul di mobile */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -32,16 +35,16 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/favorites">
+              <Link className="nav-link" to="/favorite">
                 Favorites
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
+              <Link className="nav-link" to="/talk">
+                Talk AI
               </Link>
             </li>
-            <li>
+            <li className="nav-item">
               <button className="btn btn-danger ms-3" onClick={handleLogout}>
                 Logout
               </button>

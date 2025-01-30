@@ -5,21 +5,26 @@ import NoAuthLayout from "./pages/NoAuthLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+import GeminiTalk from "./pages/Gemini";
+import Favorite from "./pages/Favorite";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <Routes>
-      <Route element={<NoAuthLayout />}>
-        <Route path="register" element={<Register />} />
-        <Route path="login" element={<Login />} />
-      </Route>
+    <Provider store={store}>
+      <Routes>
+        <Route element={<NoAuthLayout />}>
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+        </Route>
 
-      <Route element={<AuthLayout />}>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/clubs/:id" element={<ClubsId />} />
-      <Route path="/myclubs" element={<MyClubs />} />
-      <Route path="/myclubs/:ClubId" element={<MyClubsId />} /> */}
-      </Route>
-    </Routes>
+        <Route element={<AuthLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/talk" element={<GeminiTalk />} />
+          <Route path="/favorite" element={<Favorite />} />
+        </Route>
+      </Routes>
+    </Provider>
   </BrowserRouter>
 );

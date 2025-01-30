@@ -8,8 +8,8 @@ const gemini = require("../helpers/geminiAi");
 class Controller {
   static async geminiAi(req, res, next) {
     try {
-      const { genre1, genre2 } = req.body;
-      let data = await gemini(genre1, genre2);
+      const { input } = req.body;
+      let data = await gemini(input);
       res.status(200).json(data);
     } catch (err) {
       console.log(err);
