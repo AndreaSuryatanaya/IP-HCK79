@@ -8,5 +8,7 @@ router.get("/", (req, res) => {
 
 router.post("/register", Controller.handleRegister);
 router.post("/login", Controller.handleLogin);
+router.post("/google-login", Controller.handleGoogleLogin);
+router.post("/which-is-better", Controller.geminiAi);
 
 module.exports = router;

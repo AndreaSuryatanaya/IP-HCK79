@@ -1,8 +1,22 @@
 const { User } = require("../models");
 const { comparePass } = require("../helpers/hashPassword");
 const { signToken } = require("../helpers/jwt");
+const { OAuth2Client } = require("google-auth-library");
+// const { where } = require("sequelize");
+const gemini = require("../helpers/geminiAi");
 
 class Controller {
+  static async geminiAi(req, res, next) {
+    try {
+      const { genre1, genre2 } = req.body;
+      let data = await gemini(genre1, genre2);
+      res.status(200).json(data);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "ISE" });
+    }
+  }
+
   static async handleRegister(req, res, next) {
     try {
       const { username, email, password } = req.body;
@@ -23,6 +37,7 @@ class Controller {
         },
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -57,7 +72,6 @@ class Controller {
 
       const payload = {
         id: foundUser.id,
-        username: foundUser.username,
         email: foundUser.email,
       };
       const token = signToken(payload);
@@ -66,6 +80,42 @@ class Controller {
       });
     } catch (err) {
       next(err);
+    }
+  }
+
+  static async handleGoogleLogin(req, res, next) {
+    try {
+      const { googleToken } = req.body;
+      if (!googleToken) {
+        return res.status(400).json({ message: "Missing Google token!" });
+      }
+
+      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+      const ticket = await client.verifyIdToken({
+        idToken: googleToken,
+        audience: process.env.GOOGLE_CLIENT_ID, // Client ID Anda
+      });
+
+      const payload = ticket.getPayload();
+      console.log(payload);
+
+      const [user, created] = await User.findOrCreate({
+        where: { email: payload.email },
+        defaults: {
+          username: payload.name,
+          email: payload.email,
+          password: Date.now().toString() + Math.random().toString(),
+          role: "user",
+        },
+      });
+
+      const token = signToken({ id: user.id, email: user.email });
+      res.status(200).json({
+        access_token: token,
+      });
+    } catch (err) {
+      console.error(err);
+      next(err); // Kirim error ke middleware error handler
     }
   }
 }
