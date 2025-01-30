@@ -5,19 +5,29 @@ import { useNavigate } from "react-router";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  console.log(username);
+  console.log(email);
+  console.log(password);
 
   async function handleRegister(e) {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/register", {
-        fullName,
-        email,
-        password,
+      const { data } = await axios({
+        method: "POST",
+        url: "/register",
+        data: {
+          username,
+          email,
+          password,
+        },
       });
       console.log(data);
+      Swal.fire({
+        text: "Regist Success",
+      });
       navigate("/login");
     } catch (error) {
       Swal.fire({
@@ -66,8 +76,8 @@ export default function Register() {
           <input
             type="text"
             placeholder="Full Name"
-            onChange={(e) => setFullName(e.target.value)}
-            required
+            onChange={(e) => setUsername(e.target.value)}
+            // required
             style={{
               width: "100%",
               padding: "12px",
@@ -81,7 +91,7 @@ export default function Register() {
             type="email"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
-            required
+            // required
             style={{
               width: "100%",
               padding: "12px",
@@ -95,7 +105,7 @@ export default function Register() {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
             style={{
               width: "100%",
               padding: "12px",
