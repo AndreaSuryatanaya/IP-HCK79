@@ -3,9 +3,10 @@ if (process.env.NODE_ENV !== "production") {
 }
 const cors = require("cors");
 const express = require("express");
+require("dotenv").config();
 const app = express();
-const port = 3000;
-const gemini = require("./helpers/geminiAi")
+const port = process.env.port || 3000;
+const gemini = require("./helpers/geminiAi");
 const router = require("./routes/index");
 const { errorHandler } = require("./middlewares/errorHandler");
 // app.use(cors());
