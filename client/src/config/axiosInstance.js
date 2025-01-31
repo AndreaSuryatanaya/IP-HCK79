@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000", // Sesuaikan dengan server Express
+  baseURL: "http://13.215.248.129/", // Sesuaikan dengan server Express
   headers: {
     "Content-Type": "application/json",
   },
