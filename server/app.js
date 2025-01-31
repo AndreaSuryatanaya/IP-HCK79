@@ -5,7 +5,7 @@ const cors = require("cors");
 const express = require("express");
 require("dotenv").config();
 const app = express();
-const port = process.env.port || 3000;
+// const port = process.env.port || 3000;
 const gemini = require("./helpers/geminiAi");
 const router = require("./routes/index");
 const { errorHandler } = require("./middlewares/errorHandler");
@@ -24,8 +24,8 @@ app.use(express.json());
 app.use(router);
 
 app.use(errorHandler);
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
 
 module.exports = app;
