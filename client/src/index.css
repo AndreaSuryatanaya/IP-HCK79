@@ -1,0 +1,37 @@
+/* /* CSS untuk Card */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;  /* Pastikan card menyesuaikan dengan ukuran kontainer */
+  max-width: 320px;  /* Tentukan max-width untuk menjaga ukuran card tetap sesuai */
+  margin: 0 auto; /* Memastikan card berada di tengah */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Styling gambar */
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* Responsif untuk ukuran lebih kecil */
+@media (max-width: 768px) {
+  .card {
+    max-width: 45%;  /* Mengurangi ukuran card menjadi 45% di layar tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;  /* Card akan mengambil 100% lebar pada layar mobile */
+  }
+}
