@@ -12,7 +12,7 @@ const { errorHandler } = require("./middlewares/errorHandler");
 // app.use(cors());
 app.use(
   cors({
-    origin: "http://localhost:5173", // Hanya izinkan akses dari Vite
+    origin: "http://localhost:5173" || "https://server.andreasuryatanaya.my.id", // Hanya izinkan akses dari Vite
     methods: "GET, POST, PUT, DELETE",
     credentials: true, // Jika menggunakan cookie/token
   })
